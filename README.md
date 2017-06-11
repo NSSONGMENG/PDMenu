@@ -2,7 +2,7 @@
 一个简单的下拉菜单实现
 =======================
 
-
+### 使用方法
 ```Objective-C
     NSArray * titles = @[@"first row - first row",
                          @"second row - second row",
