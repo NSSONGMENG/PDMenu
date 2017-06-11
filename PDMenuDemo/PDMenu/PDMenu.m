@@ -39,6 +39,11 @@ UITableViewDataSource
 
 @implementation PDMenu
 
+- (void)dealloc
+{
+    NSLog(@" -- %s -- ",__func__);
+}
+
 - (instancetype)initWithTitles:(NSArray <NSString *>*)titles itemWidth:(CGFloat)width
 {
     if (self = [super init]) {

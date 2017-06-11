@@ -40,9 +40,13 @@
 }
 
 - (void)btnAction:(UIButton *)btn{
-    [_menu showFromView:btn offset:5.f seletedItem:^(NSInteger index, id title) {
-        NSLog(@" -- row : %ld -- title : %@ -- ",index,title);
-    }];
+    if ([self.navigationController.viewControllers count] < 2) {
+        [self.navigationController pushViewController:[ViewController new] animated:YES];
+    }else{
+        [_menu showFromView:btn offset:5.f seletedItem:^(NSInteger index, id title) {
+            NSLog(@" -- row : %ld -- title : %@ -- ",index,title);
+        }];
+    }
 }
 
 
