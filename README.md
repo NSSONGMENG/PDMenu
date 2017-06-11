@@ -9,8 +9,8 @@
                          @"thired row - thired row",
                          @"fourth row - fourth row"];
     PDMenu  * menu = [[PDMenu alloc] initWithTitles:titles itemWidth:100];
-    menu.style = MenuStyleBlack;
 
-    [menu showFromView:view seletedItem:^(NSInteger index, id title) {
+    // aView确定了菜单弹出的位置，通常点击了aView，在aView的下方弹出了此菜单
+    [menu showFromView:aView offset:5.f seletedItem:^(NSInteger index, id title) {
         NSLog(@" -- row : %ld -- title : %@ -- ",index,title);
     }];

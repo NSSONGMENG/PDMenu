@@ -37,11 +37,10 @@
                          @"thired row - thired row",
                          @"fourth row - fourth row"];
     _menu = [[PDMenu alloc] initWithTitles:titles itemWidth:100];
-    _menu.style = MenuStyleBlack;
 }
 
 - (void)btnAction:(UIButton *)btn{
-    [_menu showFromView:btn seletedItem:^(NSInteger index, id title) {
+    [_menu showFromView:btn offset:5.f seletedItem:^(NSInteger index, id title) {
         NSLog(@" -- row : %ld -- title : %@ -- ",index,title);
     }];
 }

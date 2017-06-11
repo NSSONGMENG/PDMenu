@@ -8,18 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, MenuStyle){
-    MenuStyleWhite,
-    MenuStyleBlack,
-};
-
 
 /** 下拉菜单 */
 @interface PDMenu : UIView
 
 @property (nonatomic, readonly) NSArray     * titles;
 @property (nonatomic, readonly) CGFloat     width;
-@property (nonatomic, assign)   MenuStyle   style;
 
 /** 选中之后是否自动dismiss，默认为YES */
 @property (nonatomic, assign)   BOOL        autoDismiss;
@@ -34,7 +28,21 @@ typedef NS_ENUM(NSInteger, MenuStyle){
  */
 - (instancetype)initWithTitles:(NSArray <NSString *>*)titles itemWidth:(CGFloat)width;
 
-- (void)showFromView:(UIView *)targetView seletedItem:(void(^)(NSInteger index,id title))seleted;
+
+/**
+ 弹出菜单
+
+ @param targetView 显示菜单的视图
+ @param offset 菜单相对于targetView在y坐标的偏移量
+ @param seleted 选择任意item后回调
+ */
+- (void)showFromView:(UIView *)targetView
+              offset:(CGFloat)offset
+         seletedItem:(void(^)(NSInteger index,id title))seleted;
+
+/**
+ 隐藏菜单
+ */
 - (void)dismiss;
 
 

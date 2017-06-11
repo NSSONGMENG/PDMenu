@@ -22,6 +22,7 @@ UITableViewDataSource
 
 @property (nonatomic, readwrite) NSArray    * titles;
 @property (nonatomic, readwrite) CGFloat    width;
+//@property (nonatomic, readwrite) CGFloat    offset;
 
 /** table view的父视图 */
 @property (nonatomic, strong) UIView    * btomView;
@@ -77,7 +78,9 @@ UITableViewDataSource
 #pragma mark -
 #pragma mark - public method
 
-- (void)showFromView:(UIView *)targetView seletedItem:(void(^)(NSInteger index,id title))seleted
+- (void)showFromView:(UIView *)targetView
+              offset:(CGFloat)offset
+         seletedItem:(void(^)(NSInteger index,id title))seleted
 {
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     _block = seleted;
@@ -92,6 +95,13 @@ UITableViewDataSource
     // y
     CGFloat y = rect.origin.y + rect.size.height + _btomView.frame.size.height > kScreenHeight ?
     rect.origin.y - _btomView.frame.size.height : rect.origin.y + rect.size.height;
+    
+    //设定便宜量
+    if (y > rect.origin.y) {
+        y += offset;
+    }else{
+        y -= offset;
+    }
     
     CGRect  aimFrame = CGRectMake(x,
                                   y,
@@ -113,9 +123,7 @@ UITableViewDataSource
     
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         _tableV.frame = _btomView.bounds;
-        if (_style == MenuStyleBlack) {
-            self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
-        }
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
     } completion:nil];
 }
 
@@ -186,5 +194,6 @@ UITableViewDataSource
     
     _width = MAX(w + 30, _width);
 }
+
 
 @end
