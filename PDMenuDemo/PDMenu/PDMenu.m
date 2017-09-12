@@ -76,6 +76,7 @@ UITableViewDataSource
     _tableV.delegate = self;
     _tableV.dataSource = self;
     _tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableV.layer.cornerRadius = 3.f;
     [_btomView addSubview:_tableV];
 }
 
@@ -101,7 +102,7 @@ UITableViewDataSource
     CGFloat y = rect.origin.y + rect.size.height + _btomView.frame.size.height > kScreenHeight ?
     rect.origin.y - _btomView.frame.size.height : rect.origin.y + rect.size.height;
     
-    //设定便宜量
+    //设定偏移量
     if (y > rect.origin.y) {
         y += offset;
     }else{
@@ -134,6 +135,8 @@ UITableViewDataSource
 
 - (void)dismiss
 {
+    _block = nil;
+    
     //dismiss
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         _tableV.frame = _animationBeginFrame;

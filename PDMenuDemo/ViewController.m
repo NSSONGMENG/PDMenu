@@ -20,6 +20,11 @@
 
 @implementation ViewController
 
+- (void)dealloc
+{
+    NSLog(@" -- %s --",__func__);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -45,10 +50,17 @@
     }else{
         [_menu showFromView:btn offset:5.f seletedItem:^(NSInteger index, id title) {
             NSLog(@" -- row : %ld -- title : %@ -- ",index,title);
+            
+            //此处可以直接使用self的强指针，因为PDMenu在dismiss的时候讲它持有的block置为了nil
+            [self xx];
         }];
     }
 }
 
+- (void)xx
+{
+    NSLog(@" -- ");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
